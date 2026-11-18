@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Inspección Visual PWA</title>
+  <meta name="description" content="Captura de evidencia fotográfica con acceso consciente a cámara.">
+
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#0f172a">
+
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="InspecciónPWA">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="icon" type="image/png" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="encabezado">
+    <h1>Inspección Visual</h1>
+    <p class="subtitulo">Vista previa de cámara con consentimiento consciente</p>
+  </header>
+
+  <main class="contenedor">
+
+    <button id="btn-instalar" class="boton boton-secundario" type="button" hidden>
+      Instalar App
+    </button>
+
+    <section id="instrucciones-ios" class="tarjeta tarjeta-ios" hidden>
+      <h2>Instalar en iPhone / iPad</h2>
+      <p>Para instalar en iPhone, pulsa el icono <strong>Compartir</strong> y selecciona <strong>'Agregar a inicio'</strong>.</p>
+      <ol>
+        <li>Pulsa el botón <strong>Compartir</strong>.</li>
+        <li>Desliza y elige <strong>Agregar a inicio</strong>.</li>
+        <li>Confirma con <strong>Agregar</strong> y abre la app desde el nuevo icono.</li>
+      </ol>
+    </section>
+
+    <section class="visor">
+      <video id="visor-camara" autoplay playsinline muted></video>
+      <div id="visor-vacio" class="visor-vacio">
+        <span>Cámara apagada</span>
+      </div>
+    </section>
+
+    <p id="mensaje-estado" class="mensaje-estado" role="status" aria-live="polite">
+      La cámara está apagada.
+    </p>
+
+    <button id="btn-preparar-camara" class="boton boton-primario" type="button">
+      Solicitar Acceso a Cámara
+    </button>
+
+    <section id="aviso-permiso" class="tarjeta tarjeta-aviso" hidden>
+      <h2>Antes de continuar</h2>
+      <p>Esta aplicación requiere acceso a tu cámara únicamente para mostrar una
+        vista previa local en pantalla. Ninguna imagen se envía a servidores externos.</p>
+      <ul>
+        <li><strong>¿Para qué?</strong> Mostrar una vista previa en vivo para inspección visual.</li>
+        <li><strong>¿Qué cámara?</strong> Se encenderá la cámara <strong>trasera</strong>; podrás cambiar a la frontal cuando quieras.</li>
+        <li><strong>¿Dónde se procesa?</strong> Solo en tu dispositivo. Puedes apagarla en cualquier momento.</li>
+      </ul>
+      <p id="nota-permiso-ios" class="nota" hidden>
+        En iPhone, la app instalada y Safari no comparten permisos: es posible
+        que el sistema vuelva a preguntarte al abrir la app desde el icono.
+      </p>
+      <p class="nota">A continuación tu teléfono mostrará su ventana de permiso; pulsa <strong>Permitir</strong>.</p>
+      <div class="fila-botones">
+        <button id="btn-cancelar-permiso" class="boton boton-secundario" type="button">
+          Ahora no
+        </button>
+        <button id="btn-confirmar-permiso" class="boton boton-primario" type="button">
+          Aceptar y Encender Cámara
+        </button>
+      </div>
+    </section>
+
+    <div class="fila-botones">
+      <button id="btn-alternar-camara" class="boton boton-secundario" type="button" disabled>
+        Cambiar cámara
+      </button>
+      <button id="btn-apagar-camara" class="boton boton-peligro" type="button" disabled>
+        Apagar
+      </button>
+    </div>
+  </main>
+
+  <footer class="pie">
+    <p>PWA · JavaScript Vanilla · Sin async/await</p>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
